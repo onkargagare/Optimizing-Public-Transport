@@ -37,15 +37,13 @@ class Station(Producer):
         # replicas
         #
         #
-        topic_name = f"{station_name}" # TODO: Come up with a better topic name
         super().__init__(
-            topic_name,
+            topic_name="org.chicago.cta.station.arrivals.v1",
             key_schema=Station.key_schema,
-            value_schema=Station.value_schema, # TODO: Uncomment once schema is defined
+            value_schema=Station.value_schema,
             num_partitions=5,
             num_replicas=1,
         )
-
         self.station_id = int(station_id)
         self.color = color
         self.dir_a = direction_a
